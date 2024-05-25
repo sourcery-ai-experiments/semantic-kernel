@@ -141,7 +141,7 @@ public class WeaviateMemoryStore : IMemoryStore
 
         if (response.StatusCode == HttpStatusCode.NotFound)
         {
-            this._logger.LogTrace("Collection: {0}, with class name: {1}, does not exist.", collectionName, className);
+            this._logger.LogDebug("Collection: {0}, with class name: {1}, does not exist.", collectionName, className);
             return false;
         }
 
