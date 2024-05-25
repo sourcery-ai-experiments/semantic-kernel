@@ -292,7 +292,9 @@ public class WeaviateMemoryStore : IMemoryStore
         {
             response.EnsureSuccess(responseContent, this._logger);
         }
-        catch (HttpOperationException) when (response.StatusCode == HttpStatusCode.NotFound)
+        catch (HttpOperationException ex) when (response.StatusCode == HttpStatusCode.NotFound)
+        {
+            this._logger.LogError("Request failed with status code {StatusCode}: {Message}", response.StatusCode, ex.Message);
         {
             this._logger.LogDebug("No vector with key: {0} is found", key);
             return null;
