@@ -83,7 +83,7 @@ public class WeaviateMemoryStore : IMemoryStore
 
         if (string.IsNullOrEmpty(httpClient.BaseAddress?.AbsoluteUri) && string.IsNullOrEmpty(endpoint))
         {
-            throw new ArgumentException("The HttpClient BaseAddress and endpoint are both null or empty. Please ensure at least one is provided.");
+            throw new InvalidOperationException("The HttpClient BaseAddress and endpoint are both null or empty. Please ensure at least one is provided.");
         }
 
         this._apiKey = apiKey;
