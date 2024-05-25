@@ -209,7 +209,16 @@ public class QdrantMemoryStore : IMemoryStore
     /// <inheritdoc />
     public async Task RemoveAsync(string collectionName, string key, CancellationToken cancellationToken = default)
     {
-        await this._qdrantClient.DeleteVectorByPayloadIdAsync(collectionName, key, cancellationToken).ConfigureAwait(false);
+        try
+        {
+            await this._qdrantClient.DeleteVectorByPayloadIdAsync(collectionName, key, cancellationToken).ConfigureAwait(false);
+            Console.WriteLine($"Successfully deleted vector with key: {key} from collection: {collectionName}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Failed to delete vector with key: {key} from collection: {collectionName}. Exception: {ex.Message}");
+            throw;
+        }
     }
 
     /// <inheritdoc />
