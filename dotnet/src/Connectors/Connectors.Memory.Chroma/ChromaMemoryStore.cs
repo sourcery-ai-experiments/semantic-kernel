@@ -67,7 +67,9 @@ public class ChromaMemoryStore : IMemoryStore
     {
         Verify.NotNullOrWhiteSpace(collectionName);
 
+        this._logger.LogInformation("Attempting to delete collection {0}", collectionName);
         await this._chromaClient.DeleteCollectionAsync(collectionName, cancellationToken).ConfigureAwait(false);
+        this._logger.LogInformation("Successfully deleted collection {0}", collectionName);
     }
 
     /// <inheritdoc />
