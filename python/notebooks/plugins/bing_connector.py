@@ -92,7 +92,10 @@ class BingConnector(ConnectorBase):
 
         if num_results <= 0:
             raise ValueError("num_results value must be greater than 0.")
-        if num_results >= 50:
+MAX_NUM_RESULTS = 50
+
+if num_results >= MAX_NUM_RESULTS:
+    raise ValueError(f"num_results value must be less than {MAX_NUM_RESULTS}.")
             raise ValueError("num_results value must be less than 50.")
 
         if offset < 0:
