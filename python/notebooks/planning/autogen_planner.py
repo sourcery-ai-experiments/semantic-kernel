@@ -133,7 +133,8 @@ Reply TERMINATE when the task is done.
         """
         functions = []
         sk_functions = self.kernel.skills.get_functions_view()
-        for ns in {**sk_functions.native_functions, **sk_functions.semantic_functions}:
+        combined_functions = {**sk_functions.native_functions, **sk_functions.semantic_functions}
+        for ns in combined_functions:
             for f in sk_functions.native_functions[ns]:
                 functions.append(
                     {
